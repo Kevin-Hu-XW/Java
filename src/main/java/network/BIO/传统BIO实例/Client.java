@@ -1,0 +1,23 @@
+package network.BIO.传统BIO实例;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.net.Socket;
+
+public class Client {
+    public static void main(String[] args) {
+        try {
+            //创建socket对象，请求服务端的链接
+            Socket socket = new Socket("127.0.0.1",10022);
+            //从socket中获得字节输出流
+            OutputStream os = socket.getOutputStream();
+            //把直接输出流包装成打印流
+            PrintWriter pw = new PrintWriter(os) ;
+            pw.println("客户端说：Hello");
+            pw.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
